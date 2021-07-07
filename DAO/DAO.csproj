@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConexionDB.cs" />
+    <Compile Include="DataCategoria.cs" />
     <Compile Include="DataCliente.cs" />
     <Compile Include="DataVendedor.cs" />
     <Compile Include="Obligatorio.cs" />

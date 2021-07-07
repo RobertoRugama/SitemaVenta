@@ -20,8 +20,8 @@ namespace DAO
         }
         public void create(Vendedor objVendedor)
         {
-            string create = "sp_vendedor_ad " + objVendedor.Identificacion+"," + objVendedor.P_nombre + "," + objVendedor.S_nombre + "," + objVendedor.P_apellido + "," +
-                objVendedor.S_apellido + "," + objVendedor.Telefono + "";
+            string create = "sp_vendedor_add " + objVendedor.Identificacion+ "," + objVendedor.P_nombre + "," + objVendedor.S_nombre + "," + objVendedor.P_apellido + "," +
+                objVendedor.S_apellido + "," + objVendedor.Telefono +" ";
             try
             {
                 comando = new SqlCommand(create, objConexionBD.getCon());
@@ -31,9 +31,16 @@ namespace DAO
             }
             catch (SqlException ex)
             {
-               MessageBox.Show(ex.Message.ToString());
-                objVendedor.Estado = 1;
+                if (ex.Message.Length>1)
+                {
+                    MessageBox.Show(ex.Message);
+                    objVendedor.Estado = 1;
+                }
+                else
+                {
+                    MessageBox.Show("El Registro " + objVendedor.Identificacion + "Fue Guardado con Exito", "Informacion", MessageBoxButtons.OK);
 
+                }
             }
             finally
             {
